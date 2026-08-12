@@ -1,0 +1,37 @@
+{
+  "name": "ffxi-macro-editor",
+  "displayName": "FFXI Macro Editor",
+  "description": "Out-of-game editor for Final Fantasy XI mcr*.dat macro set files",
+  "version": "0.8.0",
+  "publisher": "local-dev",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": ["Other"],
+  "extensionKind": ["ui"],
+  "activationEvents": [
+    "onCustomEditor:ffxiMacro.editor",
+    "onCustomEditor:ffxiMacro.bookListEditor"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "ffxiMacro.editor",
+        "displayName": "FFXI Macro Set",
+        "selector": [
+          { "filenamePattern": "mcr*.dat" }
+        ],
+        "priority": "default"
+      },
+      {
+        "viewType": "ffxiMacro.bookListEditor",
+        "displayName": "FFXI Macro Book List",
+        "selector": [
+          { "filenamePattern": "mcr*.ttl" }
+        ],
+        "priority": "default"
+      }
+    ]
+  }
+}
