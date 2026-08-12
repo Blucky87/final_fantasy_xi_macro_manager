@@ -1,0 +1,45 @@
+name: Build & Release Extension
+
+# Builds a .vsix on every push to main (or manually), and publishes it as a
+# GitHub Release so it shows up as a direct download on the repo's main
+# page. No secrets/tokens to configure - GITHUB_TOKEN is provided
+# automatically and is only used to create the release, not to publish to
+# the public VS Code Marketplace.
+
+"on":
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install vsce
+        run: npm install -g @vscode/vsce
+
+      - name: Read version from package.json
+        id: pkg
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Package extension (.vsix)
+        run: vsce package
+
+      - name: Publish GitHub Release with the .vsix attached
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.pkg.outputs.version }}
+          name: v${{ steps.pkg.outputs.version }}
+          make_latest: true
+          files: '*.vsix'

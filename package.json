@@ -7,6 +7,10 @@
   "engines": {
     "vscode": "^1.74.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Blucky87/final_fantasy_xi_macro_manager.git"
+  },
   "categories": ["Other"],
   "extensionKind": ["ui"],
   "activationEvents": [

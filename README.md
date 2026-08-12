@@ -3,6 +3,37 @@
 Out-of-game editor for Final Fantasy XI `mcr*.dat` macro set files and their
 `mcr.ttl` / `mcr_2.ttl` book-name files.
 
+## TL;DR — quick start
+
+1. **Install the extension.** Grab the latest `.vsix` from this repo's
+   [Releases page](../../releases/latest), then either:
+   - drag it into VS Code's Extensions view, or
+   - run `code --install-extension ffxi-macro-editor-<version>.vsix`.
+
+   (No `.vsix` yet, or building from source? See
+   [Packaging](#packaging-optional) below for the full `vsce package` steps.)
+
+2. **Open your character's macro folder.** In VS Code: `File > Open Folder`,
+   and point it at the `USER\<character ID>` folder inside your FFXI
+   install — that's where `mcr*.dat` and `mcr.ttl` actually live. On
+   Windows this is typically:
+
+   ```
+   C:\Program Files (x86)\PlayOnline\SquareEnix\FINAL FANTASY XI\USER\0A1B2C3D
+   ```
+
+   `<character ID>` is a per-character hex folder name (e.g. `0A1B2C3D`
+   above) — if you have multiple characters, there's one such folder for
+   each. If you don't see `Program Files (x86)\PlayOnline`, check wherever
+   you actually installed FFXI (a Steam library folder, a Windower/Ashita
+   setup, etc.) for the same `...\FINAL FANTASY XI\USER\<ID>` structure.
+
+3. Click any `mcr*.dat` or `mcr.ttl` file in the Explorer — it opens in the
+   custom editor instead of raw text/binary. **Back up that `USER\<ID>`
+   folder before your first edit**, and see
+   [Known limitations](#known-limitations--next-steps) below before trusting
+   it with your only copy of your macros.
+
 ## Macro set editor (`mcr*.dat`)
 
 Opening any file matching `mcr*.dat` (e.g. `mcr.dat`, `mcr1.dat`, `mcr20.dat`)
